@@ -1,4 +1,6 @@
 class Api::ShipmentsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def index
         @shipments = Shipment.all
     end
