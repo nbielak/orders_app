@@ -1,0 +1,1 @@
+json.partial! "api/shipments/shipment", shipment: @shipment

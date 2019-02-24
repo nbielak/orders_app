@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: shipments
+#
+#  id              :bigint(8)        not null, primary key
+#  order_number    :integer          not null
+#  vendor          :string           not null
+#  tracking_number :integer          not null
+#  address         :string           not null
+#  delivered       :boolean          not null
+#  delivery_time   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_number: 1
+  vendor: MyString
+  tracking_number: 1
+  address: MyString
+  delivered: false
+  delivery_time: MyString
+
+two:
+  order_number: 1
+  vendor: MyString
+  tracking_number: 1
+  address: MyString
+  delivered: false
+  delivery_time: MyString
