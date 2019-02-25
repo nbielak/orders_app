@@ -7,6 +7,10 @@ class Api::ShipmentsController < ApplicationController
     
     def create
         @shipment = Shipment.new(shipment_params)
+        @vendor = Vendor.find(params[:shipment][:vendor_id])
+        @shipment.delivered = false
+        @shipment.delivery_time = set_delivery_time
+        @shipment.delivery_status = set_delivery_status(@shipment, @vendor)
         if @shipment.save
             render 'api/shipments/show'
         else
@@ -17,6 +21,35 @@ class Api::ShipmentsController < ApplicationController
     private
 
     def shipment_params
-        params.require(:shipment).permit(:order_number, :tracking_number, :vendor, :address, :delivered, :delivery_time)
+        params.require(:shipment).permit(:order_id, :tracking_number, :vendor_id, :address)
+    end
+
+    def set_delivery_time
+        res = []
+
+        10.times do
+            res << 3
+        end
+
+        5.times do
+            res << 5
+        end
+
+        2.times do
+            res << 10
+        end
+
+        res.shuffle.sample
+    end
+
+    def set_delivery_status(shipment, vendor)
+        diff = shipment.delivery_time - vendor.avg_delivery
+        if diff <= 3
+            return 'normal'
+        elsif diff <= 5
+            return 'not normal'
+        else
+            return 'very late'
+        end
     end
 end

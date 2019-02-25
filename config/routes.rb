@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root "static_pages#root"
   namespace :api, defaults: {format: :json} do
     resources :shipments, only: [:index, :create]
+    resources :vendors, only: [:index, :show, :create]
   end
 end
