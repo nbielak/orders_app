@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :shipments, only: [:index, :create]
     resources :vendors, only: [:index, :show, :create]
+    resources :orders, only: [:index, :show, :create]
   end
 end

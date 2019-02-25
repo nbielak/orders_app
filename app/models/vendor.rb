@@ -15,6 +15,8 @@ class Vendor < ApplicationRecord
 
     has_many :shipments,
         dependent: :destroy
+    
+    has_many :orders
 
     def avg_delivery
         Shipment.where(vendor_id: self.id).average(:delivery_time).to_i

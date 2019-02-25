@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_004018) do
+ActiveRecord::Schema.define(version: 2019_02_25_021420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "vendor_id", null: false
+    t.string "information", null: false
+    t.boolean "shipped", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["vendor_id"], name: "index_orders_on_vendor_id"
+  end
 
   create_table "shipments", force: :cascade do |t|
     t.integer "tracking_number", null: false

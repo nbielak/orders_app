@@ -11,6 +11,7 @@
 #  order_id        :integer          not null
 #  delivery_time   :integer          not null
 #  vendor_id       :integer          not null
+#  delivery_status :string           not null
 #
 
 require 'test_helper'
