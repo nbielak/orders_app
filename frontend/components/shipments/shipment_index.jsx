@@ -1,7 +1,7 @@
 import React from 'react';
 import ShipmentIndexItem from './shipment_index_item';
 
-const shipmentIndex = ({shipments, selector}) => {
+const shipmentIndex = ({vendors, shipments, selector}) => {
     if (selector) {
         shipments = selector(shipments);
     } else {
@@ -15,7 +15,7 @@ const shipmentIndex = ({shipments, selector}) => {
         <div>
             <ul>
                 {shipments.map(shipment => {
-                    return (<li>{shipment.id}</li>)
+                    return (<ShipmentIndexItem vendors={vendors} shipment={shipment}/>)
                 })}
             </ul>
         </div>

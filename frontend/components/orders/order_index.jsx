@@ -1,13 +1,14 @@
 import React from 'react';
+import OrderIndexItem from './order_index_item';
 
 
-const orderIndex = ({orders, selector}) => {
+const orderIndex = ({orders, vendors, selector}) => {
     orders = selector(orders);
     return (
         <div>
             <ul>
                 {Object.values(orders).map(order => {
-                    return (<li key={order.id}>{order.information}</li>)
+                    return (<OrderIndexItem key={order.id} vendors={vendors} order={order}/>)
                 })}
             </ul>
         </div>

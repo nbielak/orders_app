@@ -66,19 +66,19 @@ class SplashPage extends React.Component {
 
               <TabPanel>
                 <h2>All Shipments</h2>
-                <ShipmentIndex shipments={this.props.shipments} selector={null} />
+                <ShipmentIndex vendors={this.props.vendors} shipments={this.props.shipments} selector={null} />
               </TabPanel>
               <TabPanel>
                 <h2>Late Shipments</h2>
-                <ShipmentIndex shipments={this.props.shipments} selector={lateShipments} />
+                <ShipmentIndex vendors={this.props.vendors} shipments={this.props.shipments} selector={lateShipments} />
               </TabPanel>
               <TabPanel>
                 <h2>Shipments Out For Delivery</h2>
-                <ShipmentIndex shipments={this.props.shipments} selector={shipmentsOutForDelivery} />
+                <ShipmentIndex vendors={this.props.vendors} shipments={this.props.shipments} selector={shipmentsOutForDelivery} />
               </TabPanel>
               <TabPanel>
                 <h2>Unshipped Orders</h2>
-                <OrderIndex orders={this.props.orders} selector={unshippedOrders}/>
+                <OrderIndex vendors={this.props.vendors} orders={this.props.orders} selector={unshippedOrders}/>
               </TabPanel>
             </Tabs>
           </div>
