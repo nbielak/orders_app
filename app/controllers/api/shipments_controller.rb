@@ -12,7 +12,6 @@ class Api::ShipmentsController < ApplicationController
         @shipment.delivered = false
         @shipment.delivery_time = set_delivery_time
         @shipment.delivery_status = set_delivery_status(@shipment, @vendor)
-        # debugger
         if @shipment.save
             order.ship!
             render 'api/shipments/show'

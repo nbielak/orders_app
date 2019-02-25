@@ -1,24 +1,7 @@
-# README
+# Order App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a basic order application that creates shipments for orders. It uses Ruby on Rails, React, Redux, PostgreSQL, and Sass.
 
-Things you may want to cover:
+The form at the top allows users to choose from a list of vendors and corresponding orders and to input the destination address and a tracking number. Below that is a tab selector to see late shipments, shipments out for deliver, and unshipped orders.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Features that could be added are User Authentication and an Order form to create orders, as well as changes to some models once more data is needed and improvements to styling.
