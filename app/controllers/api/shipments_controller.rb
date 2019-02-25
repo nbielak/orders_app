@@ -8,8 +8,8 @@ class Api::ShipmentsController < ApplicationController
     def create
         @shipment = Shipment.new(shipment_params)
         @vendor = Vendor.find(params[:shipment][:vendor_id])
-        @order = Order.find(params[:shipment][:order_id])
-        @order.ship!
+        order = Order.find(params[:shipment][:order_id])
+        order.ship!
         @shipment.delivered ||= false
         @shipment.delivery_time = set_delivery_time
         @shipment.delivery_status = set_delivery_status(@shipment, @vendor)

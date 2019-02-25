@@ -1,0 +1,1 @@
+json.extract! order, :id, :information, :vendor_id, :shipped

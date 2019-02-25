@@ -1,9 +1,8 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import ShipmentIndex from './shipment_index'
-import {fetchAllShipments, createShipment} from '../../actions/shipment_actions';
-import {fetchAllVendors} from '../../actions/vendor_actions';
-import {fetchAllUnshippedOrders} from '../../actions/order_actions';
+import { connect } from 'react-redux';
+import SplashPage from './splash_page'
+import { fetchAllShipments, createShipment } from '../../actions/shipment_actions';
+import { fetchAllVendors } from '../../actions/vendor_actions';
+import { fetchAllUnshippedOrders } from '../../actions/order_actions';
 
 const mapStateToProps = state => ({
     shipments: state.shipments,
@@ -18,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
     fetchAllUnshippedOrders: () => dispatch(fetchAllUnshippedOrders())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShipmentIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(SplashPage);
