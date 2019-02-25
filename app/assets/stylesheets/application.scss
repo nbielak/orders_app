@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "base/css-reset.scss";
+ @import "components/shipments/*";
+ @import "components/splash_page";
+ @import "components/index"

@@ -24,10 +24,17 @@ class SplashPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateShipment = this.updateShipment.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
+        this.handleTabClick = this.handleTabClick.bind(this);
+    }
+
+    handleTabClick(e) {
+        e.preventDefault();
+        this.setState({activePage: 1});
     }
 
     handlePageChange(e) {
         e.preventDefault();
+        window.scrollTo(0, 0);
         let activePage = this.state.activePage;
         activePage = e.target.value;
         this.setState({activePage});
@@ -62,59 +69,66 @@ class SplashPage extends React.Component {
             return null;
         }
         return (
-          <div>
-            <CreateShipmentForm
-              handleSubmit={this.handleSubmit}
-              updateShipment={this.updateShipment}
-              vendors={this.props.vendors}
-              orders={this.props.orders}
-              shipment={this.state.shipment}
-            />
-            <h1>these are all the shipments</h1>
-            <Tabs>
-              <TabList>
-                <Tab>All Shipments</Tab>
-                <Tab>Late Shipments</Tab>
-                <Tab>Shipments Out For Delivery</Tab>
-                <Tab>Unshipped Orders</Tab>
-              </TabList>
+          <div className="content">
+              <div className="form-wrapper">
+                    <CreateShipmentForm
+                        handleSubmit={this.handleSubmit}
+                        updateShipment={this.updateShipment}
+                        vendors={this.props.vendors}
+                        orders={this.props.orders}
+                        shipment={this.state.shipment}
+                    />
+              </div>
+            
+            <Tabs className="tabs-wrapper">
+                <div className="tabs-list-wrapper">
+                    <TabList className="tabs-list">
+                        <Tab onClick={this.handleTabClick} className="tab">All Shipments</Tab>
+                        <Tab onClick={this.handleTabClick} className="tab">Late Shipments</Tab>
+                        <Tab onClick={this.handleTabClick} className="tab">Shipments Out For Delivery</Tab>
+                        <Tab onClick={this.handleTabClick} className="tab">Unshipped Orders</Tab>
+                    </TabList>
+                </div>
 
-              <TabPanel>
-                <h2>All Shipments</h2>
-                <ShipmentIndex vendors={this.props.vendors} 
-                    shipments={this.props.shipments} 
-                    handlePageChange={this.handlePageChange}
-                    selector={null} 
-                    activePage={this.state.activePage}
-                    perPage={this.state.perPage}/>
-              </TabPanel>
-              <TabPanel>
-                <h2>Late Shipments</h2>
-                <ShipmentIndex vendors={this.props.vendors} 
-                    shipments={this.props.shipments} 
-                    handlePageChange={this.handlePageChange}
-                    selector={lateShipments} 
-                    activePage={this.state.activePage}
-                    perPage={this.state.perPage}/>
-              </TabPanel>
-              <TabPanel>
-                <h2>Shipments Out For Delivery</h2>
-                <ShipmentIndex vendors={this.props.vendors} 
-                    shipments={this.props.shipments}
-                    handlePageChange={this.handlePageChange}
-                    selector={shipmentsOutForDelivery} 
-                    activePage={this.state.activePage}
-                    perPage={this.state.perPage}/>
-              </TabPanel>
-              <TabPanel>
-                <h2>Unshipped Orders</h2>
-                <OrderIndex vendors={this.props.vendors}
-                    handlePageChange={this.handlePageChange}
-                    orders={this.props.orders} 
-                    selector={unshippedOrders}
-                    activePage={this.state.activePage}
-                    perPage={this.state.perPage}/>
-              </TabPanel>
+              
+                <div>
+                        <TabPanel className="tab-panel">
+                            <h2 className="panel-header">All Shipments</h2>
+                            <ShipmentIndex vendors={this.props.vendors}
+                                shipments={this.props.shipments}
+                                handlePageChange={this.handlePageChange}
+                                selector={null}
+                                activePage={this.state.activePage}
+                                perPage={this.state.perPage} />
+                        </TabPanel>
+                        <TabPanel className="tab-panel">
+                            <h2 className="panel-header">Late Shipments</h2>
+                            <ShipmentIndex vendors={this.props.vendors}
+                                shipments={this.props.shipments}
+                                handlePageChange={this.handlePageChange}
+                                selector={lateShipments}
+                                activePage={this.state.activePage}
+                                perPage={this.state.perPage} />
+                        </TabPanel>
+                        <TabPanel className="tab-panel">
+                            <h2 className="panel-header">Shipments Out For Delivery</h2>
+                            <ShipmentIndex vendors={this.props.vendors}
+                                shipments={this.props.shipments}
+                                handlePageChange={this.handlePageChange}
+                                selector={shipmentsOutForDelivery}
+                                activePage={this.state.activePage}
+                                perPage={this.state.perPage} />
+                        </TabPanel>
+                        <TabPanel className="tab-panel">
+                            <h2 className="panel-header">Unshipped Orders</h2>
+                            <OrderIndex vendors={this.props.vendors}
+                                handlePageChange={this.handlePageChange}
+                                orders={this.props.orders}
+                                selector={unshippedOrders}
+                                activePage={this.state.activePage}
+                                perPage={this.state.perPage} />
+                        </TabPanel>
+                </div>
             </Tabs>
           </div>
         );

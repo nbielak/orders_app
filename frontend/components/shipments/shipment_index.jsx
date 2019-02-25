@@ -1,6 +1,7 @@
 import React from 'react';
 import ShipmentIndexItem from './shipment_index_item';
 
+
 const shipmentIndex = ({vendors, shipments, selector, handlePageChange, activePage, perPage}) => {
     if (selector) {
         shipments = selector(shipments);
@@ -20,6 +21,7 @@ const shipmentIndex = ({vendors, shipments, selector, handlePageChange, activePa
     const renderPageNumbers = pageNumbers.map(pageNumber => {
         return (
             <li
+            className="page-list-item"
             key={pageNumber}
             value={pageNumber}
             onClick={handlePageChange}>
@@ -31,12 +33,15 @@ const shipmentIndex = ({vendors, shipments, selector, handlePageChange, activePa
     return (
         
         <div>
-            <ul>
+            <div className="page-number-header">
+                <h2>page {activePage}</h2>
+            </div>
+            <ul className="index">
                 {currentShipments.map(shipment => {
                     return (<ShipmentIndexItem vendors={vendors} shipment={shipment}/>)
                 })}
             </ul>
-            <ul>
+            <ul className="page-list">
                 {renderPageNumbers}
             </ul>
         </div>

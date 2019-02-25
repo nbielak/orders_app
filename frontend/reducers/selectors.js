@@ -19,5 +19,5 @@ export const shipmentsOutForDelivery = (shipments) => {
 }
 
 export const unshippedOrders = orders => {
-    return Object.values(orders).filter(order => !order.shipped);
+    return Object.values(orders).filter(order => order.shipped === false);
 }

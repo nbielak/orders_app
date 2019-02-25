@@ -16,6 +16,7 @@ const orderIndex = ({orders, vendors, selector, activePage, perPage, handlePageC
     const renderPageNumbers = pageNumbers.map(pageNumber => {
         return (
             <li
+                className="page-list-item"
                 key={pageNumber}
                 value={pageNumber}
                 onClick={handlePageChange}>
@@ -25,12 +26,15 @@ const orderIndex = ({orders, vendors, selector, activePage, perPage, handlePageC
     });
     return (
         <div>
-            <ul>
+            <div className="page-number-header">
+                <h2>page {activePage}</h2>
+            </div>
+            <ul className="index">
                 {currentOrders.map(order => {
                     return (<OrderIndexItem key={order.id} vendors={vendors} order={order}/>)
                 })}
             </ul>
-            <ul>
+            <ul className="page-list">
                 {renderPageNumbers}
             </ul>
         </div>

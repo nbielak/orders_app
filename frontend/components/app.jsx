@@ -4,7 +4,10 @@ import SplashPageContainer from './splash_page/splash_page_container';
 
 const App = () => (
     <div className="main-content">
-        <div className="main-container">
+        <nav>
+            <h1>Orders App</h1>
+        </nav>
+        <div>
             <Switch>
                 <Route exact path="/" component={SplashPageContainer}/>
             </Switch>

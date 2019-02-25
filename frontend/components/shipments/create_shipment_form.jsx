@@ -24,26 +24,37 @@ const createShipmentForm = ({ handleSubmit, updateShipment, vendors, orders, shi
         }
     }
     return(
-        <form onSubmit={handleSubmit}>
-            <select onChange={updateShipment("vendorId")}>
-                {venderOptions()}
-            </select>
-            <select onChange={updateShipment("orderId")}>
-                {orderOptions()}
-            </select>
-            <input onChange={updateShipment("address")} 
-                type="text" 
-                value={shipment.address || ""} 
-                placeholder="Address"/>
-            
-            <input onChange={updateShipment("trackingNumber")}
-                type="number"
-                value={shipment.trackingNumber || ""}
-                placeholder="Tracking Number"
-            />
+        <div className="whole-form">
+            <div className="form-header">
+                <h2>
+                    Create Shipment
+                </h2>
+            </div>
+            <form className="create-shipment-form" onSubmit={handleSubmit}>
+                <div className="form-input-wrapper">
+                    <select onChange={updateShipment("vendorId")}>
+                        {venderOptions()}
+                    </select>
+                    <select onChange={updateShipment("orderId")}>
+                        {orderOptions()}
+                    </select>
+                    <input onChange={updateShipment("address")}
+                        type="text"
+                        value={shipment.address || ""}
+                        placeholder="Address" />
 
-            <input type="submit" value="submit"/>
-        </form>
+                    <input onChange={updateShipment("trackingNumber")}
+                        type="number"
+                        value={shipment.trackingNumber || ""}
+                        placeholder="Tracking Number"
+                    />
+                </div>
+                
+                <div className="button-wrapper">
+                    <input className="submit-button" type="submit" value="submit" />
+                </div>
+            </form>
+        </div>
     )
 }
 

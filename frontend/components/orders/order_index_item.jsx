@@ -2,24 +2,24 @@ import React from 'react';
 
 const orderIndexItem = ({vendors, order}) => {
     return (
-        <li>
-            <div>
+        <li className="index-item">
+            <div className="info-wrapper">
                 <h4>
-                    {order.id}
+                    Order #: {order.id}
                 </h4>
-            </div>
-            <div>
+
                 <h2>
-                    {vendors[order.vendorId].name}
+                    Vendor: {vendors[order.vendorId].name}
                 </h2>
             </div>
-            <div>
+            <div className="info-wrapper">
                 <h4>
-                    {order.information}
+                    Information: {order.information}
                 </h4>
-            </div>
-            <div>
-                {order.shipped ? "Shipped" : "Not Shipped"}
+
+                <h4>
+                    {order.shipped ? "Shipped" : "Not Shipped"}
+                </h4>
             </div>
         </li>
     );

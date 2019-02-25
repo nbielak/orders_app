@@ -57,4 +57,5 @@ end
         delivery_time: delivery,
         delivery_status: calc_delivery_status(order.vendor_id, delivery)
     )
+    order.ship!
 end
