@@ -1,8 +1,25 @@
 import React from 'react';
 import ShipmentIndexItem from './shipment_index_item';
 
-class ShipmentIndex extends React.Component {
+const shipmentIndex = ({shipments, selector}) => {
+    if (selector) {
+        shipments = selector(shipments);
+    } else {
+        shipments = Object.values(shipments)
+    }
 
+
+
+    return (
+        
+        <div>
+            <ul>
+                {shipments.map(shipment => {
+                    return (<li>{shipment.id}</li>)
+                })}
+            </ul>
+        </div>
+    )
 }
 
-export default ShipmentIndex;
+export default shipmentIndex;

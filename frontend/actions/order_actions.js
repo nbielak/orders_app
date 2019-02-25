@@ -7,8 +7,8 @@ const receiveAllOrders = orders => ({
     orders
 })
 
-export const fetchAllUnshippedOrders = () => dispatch => (
-    OrderApiUtil.fetchAllUnshippedOrders().then(
+export const fetchAllOrders = () => dispatch => (
+    OrderApiUtil.fetchAllOrders().then(
         orders => dispatch(receiveAllOrders(orders))
     )
 )

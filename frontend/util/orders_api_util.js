@@ -1,6 +1,6 @@
-export const fetchAllUnshippedOrders = () => (
+export const fetchAllOrders = () => (
     $.ajax({
         method: 'GET',
-        url: '/api/orders/?shipped=false'
+        url: '/api/orders'
     })
 )

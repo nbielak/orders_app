@@ -2,6 +2,10 @@ import React from 'react'
 import CreateShipmentForm from '../shipments/create_shipment_form';
 import ShipmentIndex from '../shipments/shipment_index';
 import OrderIndex from '../orders/order_index';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import {lateShipments, shipmentsOutForDelivery, unshippedOrders} from '../../reducers/selectors';
+
 
 class SplashPage extends React.Component {
     constructor(props) {
@@ -34,7 +38,7 @@ class SplashPage extends React.Component {
         this.props.fetchAllShipments().then(
             res => this.props.fetchAllVendors()
         ).then(
-            res => this.props.fetchAllUnshippedOrders()
+            res => this.props.fetchAllOrders()
         );
     }
 
@@ -43,19 +47,42 @@ class SplashPage extends React.Component {
             return null;
         }
         return (
-            <div>
-                <CreateShipmentForm 
-                    handleSubmit={this.handleSubmit}
-                    updateShipment={this.updateShipment}
-                    vendors={this.props.vendors}
-                    orders={this.props.orders}
-                    shipment={this.state}
-                />
-                <h1>
-                    these are all the shipments
-                </h1>
-            </div>
-        )
+          <div>
+            <CreateShipmentForm
+              handleSubmit={this.handleSubmit}
+              updateShipment={this.updateShipment}
+              vendors={this.props.vendors}
+              orders={this.props.orders}
+              shipment={this.state}
+            />
+            <h1>these are all the shipments</h1>
+            <Tabs>
+              <TabList>
+                <Tab>All Shipments</Tab>
+                <Tab>Late Shipments</Tab>
+                <Tab>Shipments Out For Delivery</Tab>
+                <Tab>Unshipped Orders</Tab>
+              </TabList>
+
+              <TabPanel>
+                <h2>All Shipments</h2>
+                <ShipmentIndex shipments={this.props.shipments} selector={null} />
+              </TabPanel>
+              <TabPanel>
+                <h2>Late Shipments</h2>
+                <ShipmentIndex shipments={this.props.shipments} selector={lateShipments} />
+              </TabPanel>
+              <TabPanel>
+                <h2>Shipments Out For Delivery</h2>
+                <ShipmentIndex shipments={this.props.shipments} selector={shipmentsOutForDelivery} />
+              </TabPanel>
+              <TabPanel>
+                <h2>Unshipped Orders</h2>
+                <OrderIndex orders={this.props.orders} selector={unshippedOrders}/>
+              </TabPanel>
+            </Tabs>
+          </div>
+        );
     }
 }
 

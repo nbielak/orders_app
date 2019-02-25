@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import SplashPage from './splash_page'
 import { fetchAllShipments, createShipment } from '../../actions/shipment_actions';
 import { fetchAllVendors } from '../../actions/vendor_actions';
-import { fetchAllUnshippedOrders } from '../../actions/order_actions';
+import { fetchAllOrders } from '../../actions/order_actions';
 
 const mapStateToProps = state => ({
     shipments: state.shipments,
@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
     fetchAllShipments: () => dispatch(fetchAllShipments()),
     createShipment: shipment => dispatch(createShipment(shipment)),
     fetchAllVendors: () => dispatch(fetchAllVendors()),
-    fetchAllUnshippedOrders: () => dispatch(fetchAllUnshippedOrders())
+    fetchAllOrders: () => dispatch(fetchAllOrders())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplashPage);

@@ -12,12 +12,12 @@ const createShipmentForm = ({ handleSubmit, updateShipment, vendors, orders, shi
     const orderOptions = () => {
         let result = [<option key={0} selected disabled>Choose Order ID</option>]
         if (shipment.vendorId === null) {
-            orders = Object.values(orders).sort();
+            orders = Object.values(orders).filter(order => !order.shipped).sort();
             return result.concat(orders.map(order => {
                 return (<option key={order.id} value={order.id}>{order.id}</option>);
             }));
         } else {
-            orders = Object.values(orders).filter(order => order.vendorId == shipment.vendorId).sort();
+            orders = Object.values(orders).filter(order => !order.shipped && order.vendorId == shipment.vendorId).sort();
             return result.concat(orders.map(order => {
                 return (<option key={order.id} value={order.id}>{order.id}</option>);
             }));
