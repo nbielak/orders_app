@@ -11,24 +11,39 @@ class SplashPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orderId: null,
-            vendorId: null,
-            trackingNumber: null,
-            address: null
+            shipment: {
+                orderId: null,
+                vendorId: null,
+                trackingNumber: null,
+                address: null
+            },
+            activePage: 1,
+            perPage: 20
+            
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateShipment = this.updateShipment.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
+    }
+
+    handlePageChange(e) {
+        e.preventDefault();
+        let activePage = this.state.activePage;
+        activePage = e.target.value;
+        this.setState({activePage});
     }
 
     updateShipment(field) {
         return e => {
-            this.setState({[field]: e.target.value})
+            let shipment = this.state.shipment;
+            shipment[field] = e.target.value;
+            this.setState({shipment});
         }
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        let shipment = this.state
+        let shipment = this.state.shipment
         this.props.createShipment(shipment).then(
             res => window.location.reload()
         );
@@ -53,7 +68,7 @@ class SplashPage extends React.Component {
               updateShipment={this.updateShipment}
               vendors={this.props.vendors}
               orders={this.props.orders}
-              shipment={this.state}
+              shipment={this.state.shipment}
             />
             <h1>these are all the shipments</h1>
             <Tabs>
@@ -66,19 +81,39 @@ class SplashPage extends React.Component {
 
               <TabPanel>
                 <h2>All Shipments</h2>
-                <ShipmentIndex vendors={this.props.vendors} shipments={this.props.shipments} selector={null} />
+                <ShipmentIndex vendors={this.props.vendors} 
+                    shipments={this.props.shipments} 
+                    handlePageChange={this.handlePageChange}
+                    selector={null} 
+                    activePage={this.state.activePage}
+                    perPage={this.state.perPage}/>
               </TabPanel>
               <TabPanel>
                 <h2>Late Shipments</h2>
-                <ShipmentIndex vendors={this.props.vendors} shipments={this.props.shipments} selector={lateShipments} />
+                <ShipmentIndex vendors={this.props.vendors} 
+                    shipments={this.props.shipments} 
+                    handlePageChange={this.handlePageChange}
+                    selector={lateShipments} 
+                    activePage={this.state.activePage}
+                    perPage={this.state.perPage}/>
               </TabPanel>
               <TabPanel>
                 <h2>Shipments Out For Delivery</h2>
-                <ShipmentIndex vendors={this.props.vendors} shipments={this.props.shipments} selector={shipmentsOutForDelivery} />
+                <ShipmentIndex vendors={this.props.vendors} 
+                    shipments={this.props.shipments}
+                    handlePageChange={this.handlePageChange}
+                    selector={shipmentsOutForDelivery} 
+                    activePage={this.state.activePage}
+                    perPage={this.state.perPage}/>
               </TabPanel>
               <TabPanel>
                 <h2>Unshipped Orders</h2>
-                <OrderIndex vendors={this.props.vendors} orders={this.props.orders} selector={unshippedOrders}/>
+                <OrderIndex vendors={this.props.vendors}
+                    handlePageChange={this.handlePageChange}
+                    orders={this.props.orders} 
+                    selector={unshippedOrders}
+                    activePage={this.state.activePage}
+                    perPage={this.state.perPage}/>
               </TabPanel>
             </Tabs>
           </div>
