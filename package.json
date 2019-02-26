@@ -20,9 +20,6 @@
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   },
-  "devDependencies": {
-    "redux-logger": "^3.0.6"
-  },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
   "main": "index.js",
@@ -32,12 +29,18 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch --mode=development"
+    "start": "webpack --watch --mode=development",
+    "postinstall": "webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^2.1.0"
+    "css-loader": "^2.1.0",
+    "redux-logger": "^3.0.6"
+  },
+  "engines": {
+    "node": "10.8.0",
+    "npm": "6.2.0"
   }
 }
